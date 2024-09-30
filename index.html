@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Font sến súa -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Pacifico', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: black;
+            animation: flash 1s infinite alternate;
+        }
+
+        @keyframes flash {
+            0% { background-color: #ffcc00; }
+            100% { background-color: #ff6699; }
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px 0;
+            animation: rotate 5s linear infinite, bounce 2s infinite alternate;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .birthday-message {
+            font-size: 48px;
+            color: #ff6699;
+            margin: 20px 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            animation: rotate-message 3s linear infinite; /* Xoay chữ chúc mừng sinh nhật */
+        }
+
+        @keyframes rotate-message {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .text {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            animation: shake 1s infinite alternate;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(0); }
+            100% { transform: translate(10px, 0); }
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: particle-animation 2s linear forwards; /* Tạo hiệu ứng tỏa ra */
+        }
+
+        @keyframes particle-animation {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(calc(100vw * var(--x)), calc(100vh * var(--y)));
+            }
+        }
+
+
+        .fade {
+            opacity: 0;
+            transition: opacity 3s ease;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        /* Các kiểu hạt khác nhau */
+        .particle1 {
+            width: 10px;
+            height: 10px;
+            background: red;
+        }
+
+        .particle2 {
+            width: 15px;
+            height: 15px;
+            background: yellow;
+        }
+
+        .particle3 {
+            width: 20px;
+            height: 20px;
+            background: blue;
+        }
+
+        .particle4 {
+            width: 8px;
+            height: 8px;
+            background: green;
+        }
+
+        .particle5 {
+            width: 12px;
+            height: 12px;
+            background: purple;
+        }
+
+        /* Bố cục trang */
+        .message-container {
+            margin-top: 20px;
+        }
+
+        .additional-text {
+            font-size: 20px;
+            margin: 10px 0;
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hộp quà */
+        .gift-box {
+            position: fixed; /* Chuyển thành fixed để dính vào đáy */
+            width: 100px;
+            height: 100px;
+            background-color: #ffcc00;
+            border: 5px solid #ff6699;
+            border-radius: 10%;
+            left: calc(50% - 50px);
+            bottom: 10px; /* Cách đáy màn hình 10px */
+            transform: translateY(120px); /* Xuất hiện từ trên */
+            transition: transform 1s ease, opacity 1s ease; /* Thêm opacity */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            opacity: 0; /* Ẩn hộp quà khi bắt đầu */
+        }
+
+        /* Button */
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6699;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            font-family: 'Pacifico', cursive; /* Sến súa */
+        }
+
+        button:hover {
+            background-color: #ffcc00; /* Đổi màu khi hover */
+        }
+
+        /* Hình ảnh a.jpg */
+        .image {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Trang 1 -->
+<div class="container" id="page1">
+    <button id="nextBtn" onclick="goToPage2()">Chuyển đến trang 2</button>
+</div>
+
+<!-- Trang 2 -->
+<div class="container fade" id="page2" style="display:none;">
+    
+    <div class="birthday-message">Chúc Mừng Sinh Nhật!</div>
+    
+    <div class="message-container">
+	<img id="avatar" src="https://scontent-hkg4-1.xx.fbcdn.net/v/t1.6435-9/120233935_367523434287903_8262877089075199240_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=94e2a3&_nc_eui2=AeEvRhlBk4kb-X1Fq6jT-6fPExICccP92ekTEgJxw_3Z6adZQ_ABJKJqvH0vkWcyUiWO-T72ZfQgl1Y_8Fq_plQC&_nc_ohc=uvcUPeRgAiAQ7kNvgFty-CE&_nc_ht=scontent-hkg4-1.xx&_nc_gid=Ax7lz2r3uTN1gFCSoLAzWH1&oh=00_AYCDeW8lj7D7IGVIkNMVB7UW12xtfYFKDe1AJ1EBrm4jjQ&oe=67222A22" alt="Avatar">
+        <div class="text">Ngô Lý Bảo Ngọc</div>
+        <div class="additional-text">Hy vọng bạn có một ngày thật tuyệt vời</div>
+        <div class="additional-text">Chúc bạn sức khỏe, hạnh phúc và thành công</div>
+        <div class="additional-text">Hãy tận hưởng từng khoảnh khắc nhé</div>
+    </div>
+
+    <img class="image" src="a.jpg" alt="Hình ảnh chúc mừng">
+
+    <div class="gift-box" id="giftBox">Thầy ba có gửi một món quà</div>
+</div>
+
+<audio id="audio" src="a.mp3"></audio>
+
+<script>
+    function goToPage2() {
+        document.getElementById('page1').style.display = 'none';
+        document.getElementById('audio').play();
+
+        // Hiệu ứng chuyển trang
+        setTimeout(() => {
+            document.getElementById('page2').style.display = 'flex';
+            document.getElementById('page2').classList.add('show');
+            createParticles();
+            startParticleLoop(); // Bắt đầu vòng lặp particle
+        }, 3000); // Chờ 3 giây trước khi chuyển trang
+
+        // Xuất hiện hộp quà sau 10 giây
+        setTimeout(() => {
+            const giftBox = document.getElementById('giftBox');
+            giftBox.style.opacity = '1';
+            giftBox.style.transform = 'translateY(0)'; // Hộp quà rơi xuống
+            giftBox.addEventListener('click', () => {
+                window.location.href = 'https://www.youtube.com/watch?v=rxxPqzRHsGA';
+            });
+        }, 10000); // Sau 10 giây
+    }
+
+    function createParticles() {
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const type = Math.floor(Math.random() * 5) + 1; // Tạo 5 loại hạt
+            particle.classList.add('particle' + type);
+            particle.style.setProperty('--x', Math.random() * 2 - 1);
+            particle.style.setProperty('--y', Math.random() * 2 - 1);
+            document.body.appendChild(particle);
+
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        }
+    }
+    function startParticleLoop() {
+        setInterval(createParticles, 1500); // Tạo particles liên tục mỗi 500ms
+    }
+
+</script>
+</body>
+</html>
